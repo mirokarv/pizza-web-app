@@ -28,8 +28,9 @@ def profile(request):
     
         #user_id:ta ei ehkä tarvi
         return {'profile': profile, 'user': user}
-        
- #permission ei toimi/ tai keksit ei
+   
+   
+#permission ei toimi/ tai keksit ei
 @view_config(route_name='edit_profile', permission='view')    
 def edit_profile(request):
     #initializing variables
@@ -84,13 +85,6 @@ def edit_profile(request):
  
 @view_config(route_name='change_password')    
 def change_password(request): 
-    print '\n \n'
-    print request.params.keys()
-    print request.params
-    for i in request.params:
-        print request.params[i]
-    print '\n\n'
-
     newPassword = None
     passwordRepeat = None
     oldPassword = None

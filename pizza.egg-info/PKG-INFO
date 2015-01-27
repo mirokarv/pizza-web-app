@@ -6,19 +6,33 @@ Home-page: UNKNOWN
 Author: UNKNOWN
 Author-email: UNKNOWN
 License: UNKNOWN
-Description: pizza README
+Description: 'pizza' website project README.
+        For user interface programming course.
         ==================
         
         Getting Started
         ---------------
+        - Python 2.7v used 
         
-        - cd <directory containing this file>
+        - Creating a Python environment is highly recommended
         
-        - $VENV/bin/python setup.py develop
+        - Start up the environment
         
-        - $VENV/bin/initialize_pizza_db development.ini
+        - Using command line write these lines: 
         
-        - $VENV/bin/pserve development.ini
+        -- cd <directory containing this file>
+        
+        -- python setup.py develop
+        
+        -- initialize_pizza_db development.ini
+        
+        -- pserve development.ini --reload
+        
+        
+        Programming guidelines
+        ----------------------
+        
+        - Use 4 spaces for indenting 
         
         
         
