@@ -18,14 +18,15 @@ from ..models.pizza import (
     
 from ..models.order import (
     Pizza_order,
-    Order
+    Order,
+    Extra_topping
     )    
     
 from sqlalchemy import and_
     
 
 #lists all the pizzas and names
-@view_config(route_name='pizza', renderer='pizza:templates/pizza.mak')
+@view_config(route_name='pizza', permission='view', renderer='pizza:templates/pizza.mak')
 def pizza(request):
     pizzas = DBSession.query(Pizza).all()
     #pizzas -object has all the pizzas
@@ -43,18 +44,13 @@ def pizza(request):
 
 #Saves pizza orders to database
 #only receives posts, doesn't render anything    
-@view_config(route_name='pizza_to_cart', request_method='POST')   
+@view_config(route_name='pizza_to_cart', permission='view', request_method='POST')   
 def pizza_to_cart(request):
-    print '\n\n'
-    print request.params
-    print request.params.getall('topping_id')
-    print '\n\n'
-    
     pizza_id = None
     topping_id = None
-    toppings = []
-    user_id = None
-    #price = 0
+    toppings = [] #empty list
+    
+    user_id = request.matchdict['user_id']
     
     if ('pizza_id' in request.params.keys()):
         pizza_id = request.params.get('pizza_id')
@@ -94,10 +90,16 @@ def pizza_to_cart(request):
         #searching the new column
         order = DBSession.query(Order).filter(and_(Order.user_id == user_id, Order.payment == False)).first()
         order_id = order.id
-            
-    
+                
     #model: price, pizza_id, order_id, extra, check = False    
-    pizza_order = Pizza_order(price, pizza_id, order_id, str(toppings), False)
+    pizza_order = Pizza_order(price, pizza_id, order_id, False)
+    
+    # i is topping's id
+    for i in toppings:
+        extra_topping = Extra_topping(i)
+        #linking the extra topping to pizza order
+        pizza_order.set_extra_topping(extra_topping)
+    
     DBSession.add(pizza_order) #new pizza is added now in order list
     
     

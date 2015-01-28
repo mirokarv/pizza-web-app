@@ -1,4 +1,4 @@
-<%inherit file="base.mak"/>
+<%inherit file="navbar.mak"/>
 
 <html>
     <div class="container">
@@ -6,7 +6,7 @@
             % for pizza_name in names:
             <tr>
             
-                <form class="form-horizontal" action="${request.route_url('pizza_to_cart', user_id='1')}" method="post">
+                <form class="form-horizontal" action="${request.route_url('pizza_to_cart', user_id=request.user.id)}" method="post">
                 
                     <td>${pizza_name.name}</td>
                     <h6>Täytteet:</h6>

@@ -45,14 +45,29 @@ class Pizza_order(Base):
     pizza = relationship("Pizza_name", backref="pizza_order", foreign_keys=[pizza_id])
     order_id = Column(Integer, ForeignKey("order.id"))
     order = relationship("Order", backref="order", foreign_keys=[order_id])
-    extras = Column(Unicode(255)) #if customer wants extra toppings
+    extras_topping_id = Column(Integer, ForeignKey("extra_toppings.pizza_order_id")) #if customer wants extra toppings
+    extra_topping = relationship("Extra_topping", backref="extra_toppings", foreign_keys=[extras_topping_id])
     check = Column(Boolean) #for the desktop app
    
-    def __init__(self, price, pizza_id, order_id, extra, check = False): #false is default value if nothing else is given
+    def __init__(self, price, pizza_id, order_id, check = False): #false is default value if nothing else is given
         self.price = price
         self.pizza_id = pizza_id
         self.order_id = order_id
-        self.extras = extra
         self.check = check
-
         
+    def set_extra_topping(self, extra_topping):
+        self.extra_topping = extra_topping
+        
+ 
+#mapping extra toppings in each pizza 
+class Extra_topping(Base):
+    __tablename__ = 'extra_toppings'
+    id = Column(Integer, primary_key = True)
+    pizza_order_id = Column(Integer)
+    topping_id = Column(Integer, ForeignKey("toppings.id"))
+    topping = relationship("Topping", backref="toppings", foreign_keys=[topping_id])
+    
+    def __init__(self, topping_id):
+        self.topping_id = topping_id
+        
+    

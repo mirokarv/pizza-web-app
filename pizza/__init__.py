@@ -42,6 +42,7 @@ def main(global_config, **settings):
     #config.include('pyramid_mako')
     
     
+    #allows request.user call which gets the user from the db. search function is located in security file
     config.add_request_method(get_user, 'user', reify=True)
     config.add_static_view('static', 'static', cache_max_age=3600)
     

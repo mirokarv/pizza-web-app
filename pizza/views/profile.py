@@ -16,7 +16,7 @@ from ..models.credit import Credit
 
 import transaction
 
-@view_config(route_name='profile', renderer='pizza:templates/profile.mak')    
+@view_config(route_name='profile', permission = 'view', renderer='pizza:templates/profile.mak')    
 def profile(request):
     profile = None
     
@@ -30,7 +30,6 @@ def profile(request):
         return {'profile': profile, 'user': user}
    
    
-#permission ei toimi/ tai keksit ei
 @view_config(route_name='edit_profile', permission='view')    
 def edit_profile(request):
     #initializing variables
@@ -65,12 +64,10 @@ def edit_profile(request):
             request.session.flash(u'<strong>Virhe!</strong><p>Postinumero ja puhelinnumero tulee sisältää ainoastaan numeroita</p>', 'alert')
        
         else: 
-            print '\n asd \n'
             user = DBSession.query(User).filter(User.id == user_id).first()
             #user has foreign key to profile, this is easy way to link/get user to profile
             profile = user.profile
 
-            print '\n asd \n'
             profile.update(email=email,
                         address=address,
                         city=city,                        

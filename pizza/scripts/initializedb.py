@@ -32,7 +32,8 @@ from ..models.pizza import (
 
 from ..models.order import (
     Order,
-    Pizza_order
+    Pizza_order,
+    Extra_topping
     )
 
 list_of_pizza_names = [u'Americana', u'Mexicana', u'Virokana', u'Sisilia', u'Cioa Cioa', u'Peruslätty', u'Apinalätty', u'Kasvislätty', 

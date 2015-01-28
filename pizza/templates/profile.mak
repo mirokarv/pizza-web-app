@@ -1,11 +1,4 @@
-<%inherit file="base.mak"/>
-
-<!--Error displayer, this thing is red-->
-% if len(request.session.peek_flash('alert')) > 0:
-    <div class="alert alert-danger">
-    ${request.session.pop_flash('alert')[0] | n}
-    </div>
-% endif
+<%inherit file="navbar.mak"/>
 
 <form class="form-horizontal" action="${request.route_url('edit_profile', user_id=user.id)}" method="post">
     <div class="control-group">
