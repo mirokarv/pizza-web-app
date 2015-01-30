@@ -2,6 +2,7 @@
 
 from pyramid.response import Response
 from pyramid.view import view_config
+from pyramid.httpexceptions import HTTPFound
 
 from sqlalchemy.exc import DBAPIError
 
@@ -38,10 +39,14 @@ def register(request):
             #calling alert message that is defined in a register.mak file, its red
             request.session.flash(u'<p>Syöttämäsi käyttäjänimi on jo käytössä, valitse jokin toinen</p>', 'alert')
             
+            return HTTPFound(location=request.route_url('register'))
+            
         elif not password == repeat_password:
             #same as above
             request.session.flash(u'<strong>Salasanat eivät täsmänneet</strong><p>Syöttämäsi salasana ja toistettava salasana eivät täsmänneet</p>', 'alert')
-         
+            
+            return HTTPFound(location=request.route_url('register'))
+            
         #if everything is fine
         else:
             with transaction.manager:
@@ -53,7 +58,9 @@ def register(request):
                 new_user.set_profile(new_user_profile) #linking the profile to user
                 DBSession.add(new_user) #adding everything to db
                 
-                #add success flash message
+                #success flash message
+                request.session.flash(u'<p>Registeröityminen onnistui</p>', 'success')
         
-        
-    return {'title': 'asd'} 
+                return HTTPFound(location=request.route_url('home')) 
+                
+    return {}
