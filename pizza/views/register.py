@@ -3,6 +3,7 @@
 from pyramid.response import Response
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
+from pyramid.security import remember
 
 from sqlalchemy.exc import DBAPIError
 
@@ -59,8 +60,15 @@ def register(request):
                 DBSession.add(new_user) #adding everything to db
                 
                 #success flash message
-                request.session.flash(u'<p>Registeröityminen onnistui</p>', 'success')
+                request.session.flash(u'<p>Registeröityminen onnistui.</p>', 'success')
+                
+                user = DBSession.query(User).filter(User.username == username).first()
         
-                return HTTPFound(location=request.route_url('home')) 
+                #login the new user
+                if user and user.validatePassword(password):
+                    headers = remember(request, user.id)
+                    response = Response()
+        
+                return HTTPFound(location=request.route_url('profile', user_id=user.id)) 
                 
     return {}

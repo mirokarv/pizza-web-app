@@ -25,14 +25,14 @@
     </div>
     
     <div class="control-group">
-        <label class="control-label" for="street_address">Posti numero</label>
+        <label class="control-label" for="street_address">Postinumero</label>
         <div class="controls">
             <input type="text" name="postal_code" placeholder="Posti numero" value="${profile.postal_code}">
         </div>
     </div>
     
     <div class="control-group">
-        <label class="control-label" for="street_address">Puhelin numero</label>
+        <label class="control-label" for="street_address">Puhelinnumero</label>
         <div class="controls">
             <input type="text" name="phone" placeholder="Puhelin numero" value="${profile.phone}">
         </div>
