@@ -1,0 +1,1 @@
+<%inherit file="navbar.mak"/>

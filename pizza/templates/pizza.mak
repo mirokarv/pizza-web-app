@@ -14,7 +14,13 @@
 
                     % endfor
                 %endif
+                
+                <td><a href="${request.route_url('delete_order', order_id=order.id)}" method="post" class="pull-right btn btn-info btn-small"> Poista pitsa</a></td>
+                
             % endfor
+        
+        <td><a href="${request.route_url('cart')}" method="post" class="pull-right btn btn-info btn-small"> Siirry ostoskoriin</a></td>
+            
         % else:
             <h6>Ostoskori on tyhjä blaablaa...</h6>
         % endif
