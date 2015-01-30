@@ -24,5 +24,6 @@ class Quota(Base):
     order_date = Column(DateTime(timezone=False), nullable=False) #date time for mapping selling by a week etc.
     
     #initialization method
-    def __init__(self, order_date):
+    def __init__(self, order_id, order_date):
+        self.order_id = order_id
         self.order_date = order_date

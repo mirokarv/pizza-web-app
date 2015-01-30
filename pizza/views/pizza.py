@@ -4,7 +4,10 @@ from pyramid.response import Response
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 
+import datetime
+
 from sqlalchemy.exc import DBAPIError
+from sqlalchemy import and_
 
 from ..models import (
     DBSession,
@@ -22,12 +25,36 @@ from ..models.order import (
     Extra_topping
     )    
     
-from sqlalchemy import and_
+from ..models.quota import Quota
     
 
 #lists all the pizzas and names
 @view_config(route_name='pizza', permission='view', renderer='pizza:templates/pizza.mak')
 def pizza(request):
+    user_id = None
+    pizza_toppings = {}
+    
+    if request.user:
+        user_id = request.user.id
+        
+        order = DBSession.query(Order).filter(and_(Order.user_id == user_id, Order.payment == False)).first()
+        if order:
+            orders = DBSession.query(Pizza_order).filter(Pizza_order.order_id == order.id).all()
+            
+            for i in orders:
+                extra_toppings = DBSession.query(Extra_topping).filter(Extra_topping.pizza_order_id == i.id).all()
+                #pizza_toppings = extra_toppings
+                if extra_toppings:
+                    lista = [] #empty list
+                    for j in extra_toppings:
+                        lista.append(j.topping.name) #adding topping to list
+                            
+                    pizza_toppings[i.id] = lista #adding list to dictionary with order.id as a key
+
+        
+        else:
+            orders = None
+
     pizzas = DBSession.query(Pizza).all()
     #pizzas -object has all the pizzas
     #each pizza has .topping and .pizza_name object
@@ -39,7 +66,10 @@ def pizza(request):
     toppings = DBSession.query(Topping).all()
     
     #returning all the pizzas and names to mako template
-    return {'pizzas': pizzas, 'names': names, 'toppings': toppings}
+    print '\n\n'
+    print pizza_toppings
+    print '\n\n'
+    return {'pizzas': pizzas, 'names': names, 'toppings': toppings, 'orders': orders, 'pizza_toppings': pizza_toppings}
     
 
 #Saves pizza orders to database
@@ -70,7 +100,7 @@ def pizza_to_cart(request):
             topping = DBSession.query(Topping).filter(Topping.id == top).first()
             
             if topping:
-                toppings.append(topping.name)
+                toppings.append(topping.id)
                 price = price + topping.price
     
     #searching the open orders
@@ -94,15 +124,21 @@ def pizza_to_cart(request):
     #model: price, pizza_id, order_id, extra, check = False    
     pizza_order = Pizza_order(price, pizza_id, order_id, False)
     
-    # i is topping's id
-    for i in toppings:
-        extra_topping = Extra_topping(i)
-        #linking the extra topping to pizza order
-        pizza_order.set_extra_topping(extra_topping)
-    
     DBSession.add(pizza_order) #new pizza is added now in order list
     
+    #getting new order from the db
+    new_order = DBSession.query(Pizza_order).filter(Pizza_order.order_id == order_id).order_by(Pizza_order.id.desc()).first()
     
+    for i in toppings:
+        print 'asd'
+        extra_topping = Extra_topping(new_order.id, i)
+        #adding extra toppings to the db
+        DBSession.add(extra_topping)
+        
+    #making the quota markings
+    quota = Quota(new_order.id, datetime.datetime.utcnow())
+    DBSession.add(quota)
+      
     return HTTPFound(location=request.referrer)
     
  

@@ -1,6 +1,27 @@
 <%inherit file="navbar.mak"/>
 
 <html>
+    
+    <div class="container">
+        % if orders:
+            % for order in orders:
+                <td>Pizzan nimi: ${order.pizza.name}</td>
+                <h6>Extra täytteet:</h6>
+                
+                % for topping in pizza_toppings[order.id]:
+                    <td>${topping}</td>
+
+
+                % endfor
+            % endfor
+        % else:
+            <h6>Ostoskori on tyhjä blaablaa...</h6>
+        % endif
+        
+    
+    </div>
+
+
     <div class="container">
         <tbody>
             % for pizza_name in names:
