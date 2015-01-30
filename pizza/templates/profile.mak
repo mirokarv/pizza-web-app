@@ -1,6 +1,8 @@
 <%inherit file="navbar.mak"/>
 <div class="container">
 <form class="form-horizontal" action="${request.route_url('edit_profile', user_id=user.id)}" method="post">
+    
+    
     <div class="control-group">
         <label class="control-label" for="email">Sähköposti osoite</label>
         <div class="controls">
@@ -35,14 +37,15 @@
             <input type="text" name="phone" placeholder="Puhelin numero" value="${profile.phone}">
         </div>
     </div>
-    
-    <div class="control-group">
+
+
+    <div class="control-group pull-left profile_button_container">
         <div class="controls">
             <button type="submit" class="btn btn-primary">Tallenna</button>
         </div>
     </div>
     
-    <div class="control-group">
+    <div class="control-group profile_button_container">
         <div class="controls">
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#passwordChange">Vaihda salasana</button>
         </div>

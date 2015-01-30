@@ -23,13 +23,14 @@
                         </li>
 
                     </ul>
-                    <ul class="nav pull-right">
+                    <ul class="nav navbar-right">
                         %if request.user:
                             <li class="${'active' if request.matched_route.name in ['profile'] else ''}">
                                 <a href="${request.route_url('profile', user_id =request.user.id)}">Oma profiili</a>
                             </li>
                         % endif
-                        
+                    </ul>
+                    <ul class="nav navbar-right">
                         %if request.user:
                             <li class="">
                                 <a href="${request.route_url('logout')}">Kirjaudu ulos</a>
@@ -45,7 +46,7 @@
         </div>
     </div>
 </div> 
- 
+<div class="container">
 <h1>${title if title else ''}</h1>
 </%block>
 <!--Error displayer, this thing is red-->
@@ -64,4 +65,5 @@
     ${request.session.pop_flash('info')[0] | n}
     </div>
 % endif
+</div>
 ${next.body()}

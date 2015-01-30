@@ -1,0 +1,38 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin: 0 0 30px;
+}
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 30px;
+    width: 100%;
+    text-align:center;
+}
+
+.navbar-header{
+    width: 100%;
+}
+
+.aligner-right{
+    float: right;
+}
+.aligner-left{
+    float: left;
+}
+hr{
+    border: none;
+    width: 90%;
+    height: 1px;
+    background-color: #d0d0d0;
+    color: #d0d0d0;
+}
+
+.profile_button_container{
+    padding-top: 8px;
+    padding-right: 8px;
+}
