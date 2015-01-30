@@ -1,5 +1,5 @@
 <%inherit file="base.mak"/>
-
+<div class="container">
 % if len(request.session.peek_flash('alert')) > 0:
     <div class="alert alert-danger">
     ${request.session.pop_flash('alert')[0] | n}
@@ -14,3 +14,4 @@
     <button class="btn btn-large btn-primary" name="submit" type="submit">Rekisteröidy</button>
     
 </form>
+</div>

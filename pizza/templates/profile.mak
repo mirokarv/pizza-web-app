@@ -1,5 +1,5 @@
 <%inherit file="navbar.mak"/>
-
+<div class="container">
 <form class="form-horizontal" action="${request.route_url('edit_profile', user_id=user.id)}" method="post">
     <div class="control-group">
         <label class="control-label" for="email">Sähköposti osoite</label>
@@ -49,7 +49,7 @@
     </div>
 
 </form>
-
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="passwordChange" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
