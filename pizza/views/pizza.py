@@ -66,9 +66,6 @@ def pizza(request):
     toppings = DBSession.query(Topping).all()
     
     #returning all the pizzas and names to mako template
-    print '\n\n'
-    print pizza_toppings
-    print '\n\n'
     return {'pizzas': pizzas, 'names': names, 'toppings': toppings, 'orders': orders, 'pizza_toppings': pizza_toppings}
     
 

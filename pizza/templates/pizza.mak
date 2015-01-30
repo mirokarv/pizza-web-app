@@ -6,13 +6,14 @@
         % if orders:
             % for order in orders:
                 <td>Pizzan nimi: ${order.pizza.name}</td>
-                <h6>Extra täytteet:</h6>
                 
-                % for topping in pizza_toppings[order.id]:
-                    <td>${topping}</td>
+                % if order.id in pizza_toppings:
+                    <h6>Extra täytteet:</h6>
+                    % for topping in pizza_toppings[order.id]:
+                        <td>${topping}</td>
 
-
-                % endfor
+                    % endfor
+                %endif
             % endfor
         % else:
             <h6>Ostoskori on tyhjä blaablaa...</h6>
