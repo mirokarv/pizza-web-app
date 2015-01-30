@@ -2,7 +2,7 @@
 
 <html>
     
-    <div class="container">
+    <div class="container page_container">
         <div class="panel panel-default">
         <div class="panel-body">
     
@@ -40,10 +40,10 @@
         % endif
     </div>
     </div>
-    </div>
 
 
-    <div class="container">
+
+
         
             % for pizza_name in names:
             <div class="row">

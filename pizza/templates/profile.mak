@@ -1,5 +1,5 @@
 <%inherit file="navbar.mak"/>
-<div class="container">
+<div class="container page_container">
 <form class="form-horizontal" action="${request.route_url('edit_profile', user_id=user.id)}" method="post">
     
     

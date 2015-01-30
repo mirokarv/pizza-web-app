@@ -1,7 +1,7 @@
 ## -*- coding: utf-8 -*-
 <%inherit file="navbar.mak"/>
 
-<div class="container">
+<div class="container page_container">
 <!--autocomplete will disable browsers autofilling feature-->
 <form action="${url}" method="post" autocomplete="off" class="login">
     <h3 class="form-signin-heading">Kirjaudu sisään</h2>   
