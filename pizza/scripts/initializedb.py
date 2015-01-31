@@ -22,7 +22,6 @@ from ..models import (
 #models
 from ..models.user import User
 from ..models.profile import Profile
-from ..models.credit import Credit
 from ..models.quota import Quota
 from ..models.pizza import (
     Pizza_name,
@@ -68,9 +67,7 @@ def main(argv=sys.argv):
             #str() makes everything to string
             user = User(u'user' +str(i), u'password') #creating test users, u = unicode
             user_profile = Profile(u'email' + str(i) + u'@email.com', u'kotikatu' + str(i), u'oulu', 90580, 050123123 +i) #creating a profiles for those users
-            user_credit_card = Credit(u'123456789000') #creating a credit card for the user
-            
-            user_profile.set_credit_card(user_credit_card) #linking the credit card to profile
+
             user.set_profile(user_profile) #linking the profile to user
             DBSession.add(user) #adding test users to db
             

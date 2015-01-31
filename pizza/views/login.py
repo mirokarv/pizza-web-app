@@ -19,12 +19,9 @@ from ..models.user import User
 
 @view_config(route_name='login', renderer='pizza:templates/login.mak')
 @forbidden_view_config(renderer='pizza:templates/login.mak') #if user tries to access to view that has a permission and he isn't logged in, user is automatically redirected here
-def login(request):
-    
+def login(request): 
     response = None
     came_from = None
-    
-    #request.session.flash(u'<strong>Virhe!</strong><p>asd</p>', 'alert')
     
     login_url = request.route_url('login')
     referrer = request.url

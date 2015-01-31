@@ -13,7 +13,6 @@ from ..models import (
     
 from ..models.user import User
 from ..models.profile import Profile
-from ..models.credit import Credit
 
 import transaction
     

@@ -12,4 +12,4 @@ from ..models import (
 
 @view_config(route_name='home', renderer='pizza:templates/home.mak')        
 def home(request):
-    return {'asd': 'asd'}
+    return {}

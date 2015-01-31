@@ -10,9 +10,7 @@ from sqlalchemy.orm import relationship
 from ..models import (
     DBSession,
     Base,
-    )
-    
-from ..models.credit import Credit    
+    )   
     
 #profile model
 class Profile(Base):
@@ -23,8 +21,6 @@ class Profile(Base):
     city = Column(Unicode(100))
     postal_code = Column(Integer)
     phone = Column(Integer) #maybe big integer needed?
-    credit_card_number_id = Column(Integer, ForeignKey("credit.id"))
-    credit_card = relationship('Credit', backref = 'profile', foreign_keys = [credit_card_number_id], lazy = 'joined')
 
     #initialization method
     def __init__(self, email, address, city, postal, phone):
@@ -47,7 +43,3 @@ class Profile(Base):
             self.postal_code = postal_code
         if not phone == None:
             self.phone = phone
-         
-    #method to link profile to credit card table
-    def set_credit_card(self, credit_card):
-        self.credit_card = credit_card

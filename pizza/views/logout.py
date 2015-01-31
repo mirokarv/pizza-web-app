@@ -16,4 +16,4 @@ def logout(request):
     #logout's info message, it's green 
     request.session.flash(u'<p>Uloskirjautuminen onnistui.</p>', 'success')
     
-    return HTTPFound(location=request.route_url('home'), headers=headers) #laita toinen paluu route joskus
+    return HTTPFound(location=request.route_url('home'), headers=headers)
