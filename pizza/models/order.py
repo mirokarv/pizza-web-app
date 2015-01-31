@@ -25,6 +25,7 @@ class Order(Base):
     custom_city = Column(Unicode(100))
     custom_postal_code = Column(Integer)
     custom_phone = Column(Integer)
+    payment_card = Column(Boolean)
     
     #initialization method
     def __init__(self, user, address, city, code, phone, payment):
@@ -34,6 +35,19 @@ class Order(Base):
         self.custom_postal_code = code
         self.custom_phone = phone
         self.payment = payment
+        
+    def update(self, address=None, city=None, postal=None, phone=None, card=False):
+        if address:
+            self.custom_address = address
+        if city:
+            self.custom_city = city
+        if postal:
+            self.custom_postal_code = postal
+        if phone:
+            self.custom_phone = phone
+        
+        self.payment_card = card    
+        self.payment = True
         
 #every pizza which has been ordered is mapped here
 #table is linked to orders so that we know whom to deliver those pizzas      

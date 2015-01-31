@@ -60,6 +60,7 @@ def main(global_config, **settings):
     config.add_route('change_password', '/change_password')
     config.add_route('pizza_to_cart', '/pizza_to_cart/{user_id:\d+}')
     config.add_route('delete_order', '/delete_order/{order_id:\d+}')
+    config.add_route('pay_order', '/pay_order/{user_id:\d+}')
     
     config.scan()
     return config.make_wsgi_app()
