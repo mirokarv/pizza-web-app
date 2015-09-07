@@ -70,7 +70,7 @@
                                 %for topping in toppings:
                                     <div class="control-group">
                                         <div class="controls">
-                                            <input type="checkbox" name="topping_id" value="${topping.id}"> <span class="lbl"> ${topping.name}</span>
+                                            <input type="checkbox" name="topping_id" value="${topping.id}"> <span class="lbl"> ${topping.name}  ${topping.price}€</span>
                                         </div>
                                     </div>                 
                                 %endfor
