@@ -35,6 +35,8 @@ def pizza(request):
     pizza_toppings = {}
     
     if request.user:
+        total_price = 0 #used to calculate orders total price
+        
         user_id = request.user.id
         
         order = DBSession.query(Order).filter(and_(Order.user_id == user_id, Order.payment == False)).first()
@@ -43,11 +45,16 @@ def pizza(request):
             
             for i in orders:
                 extra_toppings = DBSession.query(Extra_topping).filter(Extra_topping.pizza_order_id == i.id).all()
-                #pizza_toppings = extra_toppings
+                
+                #adding pizza's total price to total count. includes extra toppings.
+                total_price += i.price
+                
                 if extra_toppings:
                     lista = [] #empty list
+                    
                     for j in extra_toppings:
-                        lista.append(j.topping.name) #adding topping to list
+                        #adding tuples to list, name and price
+                        lista.append((j.topping.name, j.topping.price)) #adding topping to list
                             
                     pizza_toppings[i.id] = lista #adding list to dictionary with order.id as a key
 
@@ -66,7 +73,9 @@ def pizza(request):
     toppings = DBSession.query(Topping).all()
     
     #returning all the pizzas and names to mako template
-    return {'pizzas': pizzas, 'names': names, 'toppings': toppings, 'orders': orders, 'pizza_toppings': pizza_toppings}
+    return {'pizzas': pizzas, 'names': names, 'toppings': toppings, 'orders': orders, 
+            'pizza_toppings': pizza_toppings, 'total_price': total_price
+            }
     
 
 #Saves pizza orders to database
