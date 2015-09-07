@@ -75,7 +75,8 @@ def cart(request):
                 if extra_toppings:
                     lista = [] #empty list
                     for j in extra_toppings:
-                        lista.append(j.topping.name) #adding topping to list
+                        #tuples to list
+                        lista.append((j.topping.name,j.topping.price)) #adding topping to list
                             
                     pizza_toppings[i.id] = lista #adding list to dictionary with order.id as a key
                     

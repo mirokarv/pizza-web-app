@@ -12,7 +12,7 @@
                     <li class="list-group-item">
                     <div class="row">
                     <div class="col-md-8">
-                    <h5>Pizzan nimi: ${order.pizza.name}</h5>
+                    <h5>Pizzan nimi: ${order.pizza.name} ${order.pizza.price}€</h5>
                     
                     <h6>Täytteet:</h6>
                     %for tops in pizzas:
@@ -26,7 +26,7 @@
                         Lisätäytteet:
                         
                         % for topping in pizza_toppings[order.id]:
-                            ${topping}
+                            ${topping[0]}  ${topping[1]}€
 
                         % endfor
                         </p>
