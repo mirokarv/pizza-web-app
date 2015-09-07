@@ -50,7 +50,7 @@
                 <div class="col-md-10">
                 <form class="form-horizontal" action="${request.route_url('pizza_to_cart', user_id=request.user.id)}" method="post">
                 
-                    <h5>${pizza_name.name}</h5>
+                    <h5>${pizza_name.name}  ${pizza_name.price}€</h5>
                     <h6>Täytteet:</h6>
                     %for tops in pizzas:
                         %if pizza_name.name is tops.pizza_name.name:
