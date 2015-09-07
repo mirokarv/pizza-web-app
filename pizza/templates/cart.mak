@@ -7,6 +7,7 @@
         <div class="panel-body">
             % if orders:
                 <ul class="list-group">
+                <h5>Tilauksen kokonaishinta: ${total_price}€</h5>
                 % for order in orders:
                     <li class="list-group-item">
                     <div class="row">

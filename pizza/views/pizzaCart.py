@@ -29,14 +29,27 @@ from ..models.user import User
 def delete_order(request):
     order_id = request.matchdict['order_id']
     
+    #lets search whole order at first
+    orders = DBSession.query(Pizza_order).filter(Pizza_order.id == order_id).first()
+    orderID = orders.order.id # top id for all the pizza order for same user
+    
     #delete 1 pizza from orders
     DBSession.query(Pizza_order).filter(Pizza_order.id == order_id).delete()
     #delete all extra toppings related to it
     DBSession.query(Extra_topping).filter(Extra_topping.pizza_order_id == order_id).delete()
     
-    #blue info message
-    request.session.flash(u'<p>Pitsa poistettu ostoskorista.</p>', 'info')
-    return HTTPFound(location=request.referrer)
+    #lets see if there is anymore pizzas in a order
+    order = DBSession.query(Pizza_order).filter(Pizza_order.order_id == orderID).all()
+    
+    if order:
+        #blue info message
+        request.session.flash(u'<p>Pitsa poistettu ostoskorista.</p>', 'info')
+        return HTTPFound(location=request.referrer)
+        
+    else:
+        #blue info message
+        request.session.flash(u'<p>Pitsa poistettu ostoskorista. Ostoskori on tyhjä</p>', 'info')
+        return HTTPFound(location=request.route_url('pizza')) 
     
     
 @view_config(route_name='cart', permission='view', renderer='pizza:templates/cart.mak')
@@ -46,6 +59,7 @@ def cart(request):
     pizza_toppings = {}
     
     if request.user:
+        total_price = 0
         user_id = request.user.id
     
         order = DBSession.query(Order).filter(and_(Order.user_id == user_id, Order.payment == False)).first()
@@ -54,6 +68,9 @@ def cart(request):
             
             for i in orders:
                 extra_toppings = DBSession.query(Extra_topping).filter(Extra_topping.pizza_order_id == i.id).all()
+                
+                #adding each pizza's price to total count
+                total_price += i.price
 
                 if extra_toppings:
                     lista = [] #empty list
@@ -62,21 +79,26 @@ def cart(request):
                             
                     pizza_toppings[i.id] = lista #adding list to dictionary with order.id as a key
                     
-    pizzas = DBSession.query(Pizza).all()
-    #pizzas -object has all the pizzas
-    #each pizza has .topping and .pizza_name object
-    #topping contains all the toppings and pizza name the name
-    
-    #getting list of all names, so it's easier to link right toppings to right pizza
-    names = DBSession.query(Pizza_name).all()
-    #for listing all the available toppings
-    toppings = DBSession.query(Topping).all()
-    
-    user_profile = DBSession.query(User).filter(User.id == user_id).first()
-    
-    #returning all the pizzas and names to mako template
-    return {'pizzas': pizzas, 'names': names, 'toppings': toppings, 'orders': orders, 
-            'pizza_toppings': pizza_toppings, 'profile': user_profile}
+            pizzas = DBSession.query(Pizza).all()
+            #pizzas -object has all the pizzas
+            #each pizza has .topping and .pizza_name object
+            #topping contains all the toppings and pizza name the name
+            
+            #getting list of all names, so it's easier to link right toppings to right pizza
+            names = DBSession.query(Pizza_name).all()
+            #for listing all the available toppings
+            toppings = DBSession.query(Topping).all()
+            
+            user_profile = DBSession.query(User).filter(User.id == user_id).first()
+            
+            #returning all the pizzas and names to mako template
+            return {'pizzas': pizzas, 'names': names, 'toppings': toppings, 'orders': orders, 
+                    'pizza_toppings': pizza_toppings, 'profile': user_profile, 'total_price': total_price}
+          
+        else:
+            return HTTPFound(location=request.route_url('pizza')) 
+            
+    return HTTPFound(location=request.route_url('home')) 
             
             
 @view_config(route_name='pay_order', permission='view')
