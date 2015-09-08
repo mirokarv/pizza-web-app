@@ -16,7 +16,13 @@ from ..models import (
     
 from ..models.user import User
 
-
+'''
+Login view
+User is authenticated with this view
+User's id is saved in a session cookie and there fore user is always identifiable.
+Cookie is encrypted, and expires at some point
+Password is hashed and compared to hash in a db 
+'''
 @view_config(route_name='login', renderer='pizza:templates/login.mak')
 @forbidden_view_config(renderer='pizza:templates/login.mak') #if user tries to access to view that has a permission and he isn't logged in, user is automatically redirected here
 def login(request): 
@@ -48,6 +54,7 @@ def login(request):
                 return HTTPFound(location=request.route_url('home'), headers=response.headers) 
             
         else:
+            #shows the user a red error message
             request.session.flash(u'<strong>Virhe!</strong><p>Käyttäjänimi ja salasana eivät täsmänneet!</p>', 'alert')
             return HTTPFound(location=request.route_url('login'))
             

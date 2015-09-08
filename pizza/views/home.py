@@ -9,7 +9,10 @@ from ..models import (
     DBSession,
     )
 
-
+'''
+Renders home page, doesn't return any data to mak file.
+No functionality
+'''
 @view_config(route_name='home', renderer='pizza:templates/home.mak')        
 def home(request):
     return {}

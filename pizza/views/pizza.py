@@ -27,23 +27,33 @@ from ..models.order import (
     
 from ..models.quota import Quota
     
-
-#lists all the pizzas and names
+'''
+View lists all the pizzas, names and their prices
+toppings are also returned with a names and prices
+User's current order, or unfinished from previous times is returned to mak file, 
+with all the informations from a above.
+Orders total price is calculated in this view.
+'''
 @view_config(route_name='pizza', permission='view', renderer='pizza:templates/pizza.mak')
 def pizza(request):
     user_id = None
-    pizza_toppings = {}
+    pizza_toppings = {} #is used to save topping id and price to this dictionary, key is pizza's id 
     
     if request.user:
         total_price = 0 #used to calculate orders total price
         
+        #gets user id from cookie
         user_id = request.user.id
         
+        #search user's open orders
         order = DBSession.query(Order).filter(and_(Order.user_id == user_id, Order.payment == False)).first()
         if order:
+            #get all ordered pizzas in a instance
             orders = DBSession.query(Pizza_order).filter(Pizza_order.order_id == order.id).all()
             
+            #iterate the instance, i == one pizza
             for i in orders:
+                #get extra toppings from specific pizza from user's order
                 extra_toppings = DBSession.query(Extra_topping).filter(Extra_topping.pizza_order_id == i.id).all()
                 
                 #adding pizza's total price to total count. includes extra toppings.
@@ -60,6 +70,7 @@ def pizza(request):
 
         
         else:
+            #if no current open orders
             orders = None
 
     pizzas = DBSession.query(Pizza).all()
@@ -78,7 +89,7 @@ def pizza(request):
             }
     
 
-#Saves pizza orders to database
+#Saves pizza order to database
 #only receives posts, doesn't render anything    
 @view_config(route_name='pizza_to_cart', permission='view', request_method='POST')   
 def pizza_to_cart(request):
@@ -86,6 +97,7 @@ def pizza_to_cart(request):
     topping_id = None
     toppings = [] #empty list
     
+    #gets user id that is given in a form
     user_id = request.matchdict['user_id']
     
     if ('pizza_id' in request.params.keys()):
@@ -101,6 +113,7 @@ def pizza_to_cart(request):
     pizza = DBSession.query(Pizza_name).filter(Pizza_name.id == pizza_id).first()
     price = pizza.price
     
+    #searching toping's information and adding it's price to total cost of the pizza
     if topping_id:
         for top in topping_id:
             topping = DBSession.query(Topping).filter(Topping.id == top).first()
@@ -123,7 +136,7 @@ def pizza_to_cart(request):
         new_order = Order(user_id, None, None, None, None, False)
         DBSession.add(new_order)
         
-        #searching the new column
+        #searching the newly created column
         order = DBSession.query(Order).filter(and_(Order.user_id == user_id, Order.payment == False)).first()
         order_id = order.id
                 
@@ -136,7 +149,7 @@ def pizza_to_cart(request):
     new_order = DBSession.query(Pizza_order).filter(Pizza_order.order_id == order_id).order_by(Pizza_order.id.desc()).first()
     
     for i in toppings:
-        print 'asd'
+        #making connection between extra toppings and the pizza
         extra_topping = Extra_topping(new_order.id, i)
         #adding extra toppings to the db
         DBSession.add(extra_topping)

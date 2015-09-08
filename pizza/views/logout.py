@@ -6,7 +6,10 @@ from pyramid.view import view_config
   
 from pyramid.security import forget
 
-
+'''
+Logout view
+removes cookie from a user's cache 
+'''
 @view_config(route_name='logout')
 def logout(request):
     request.session.invalidate() #invalidates the cookie so that hackers can't hack this web site
