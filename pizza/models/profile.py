@@ -13,6 +13,7 @@ from ..models import (
     )   
     
 #profile model
+#each user has a profile
 class Profile(Base):
     __tablename__ = 'profiles'
     id = Column(Integer, primary_key = True)

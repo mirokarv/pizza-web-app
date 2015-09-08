@@ -13,7 +13,10 @@ from ..models import (
     Base,
     )
 
-        
+'''
+Each user can have only one open order
+pizza_order's user order's id to map all the pizza's that belongs to user's order
+'''        
 class Order(Base):
     __tablename__ = 'order'
     id = Column(Integer, primary_key = True)
@@ -35,7 +38,8 @@ class Order(Base):
         self.custom_postal_code = code
         self.custom_phone = phone
         self.payment = payment
-        
+      
+    #used to update order informations
     def update(self, address=None, city=None, postal=None, phone=None, card=False):
         if address:
             self.custom_address = address
@@ -57,7 +61,7 @@ class Pizza_order(Base):
     price = Column(Integer)
     pizza_id = Column(Integer, ForeignKey("pizza_names.id"))
     pizza = relationship("Pizza_name", backref="pizza_order", foreign_keys=[pizza_id])
-    order_id = Column(Integer, ForeignKey("order.id"))
+    order_id = Column(Integer, ForeignKey("order.id")) #'top level' id to map all the pizza_orders
     order = relationship("Order", backref="order", foreign_keys=[order_id])
     #extras_topping_id = Column(Integer, ForeignKey("extra_toppings.pizza_order_id")) #if customer wants extra toppings
     #extra_topping = relationship("Extra_topping", backref="extra_toppings", foreign_keys=[extras_topping_id])

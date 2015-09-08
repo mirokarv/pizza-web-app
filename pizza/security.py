@@ -22,6 +22,7 @@ def groupfinder(userid, request): #callback for checking if user belongs to any 
 def get_user(request):
     userid = unauthenticated_userid(request)
     if userid is not None:
+        #returns the user instance
         return DBSession.query(User).filter(User.id == userid).first()
 
 class RootFactory(object):  #generates the usage rights for view objects, rights are included in a cookie
