@@ -16,6 +16,10 @@ from ..models.profile import Profile
 
 import transaction
     
+'''    
+View created a new user and login's them and creates a user new cookie for them
+returns empty dict
+''' 
 @view_config(route_name='register', renderer='pizza:templates/register.mak')    
 def register(request):
     #initializing the values
@@ -39,6 +43,7 @@ def register(request):
             #calling alert message that is defined in a register.mak file, its red
             request.session.flash(u'<p>Syöttämäsi käyttäjänimi on jo käytössä, valitse jokin toinen</p>', 'alert')
             
+            #returns user to register view
             return HTTPFound(location=request.route_url('register'))
             
         elif not password == repeat_password:
@@ -61,13 +66,15 @@ def register(request):
                 #success flash message
                 request.session.flash(u'<p>Registeröityminen onnistui.</p>', 'success')
                 
+                #get user
                 user = DBSession.query(User).filter(User.username == username).first()
         
-                #login the new user
+                #login as the new user
                 if user and user.validatePassword(password):
                     headers = remember(request, user.id)
                     response = Response()
-        
+                
+                #redirect user to their new profile page
                 return HTTPFound(location=request.route_url('profile', user_id=user.id)) 
                 
     return {}
