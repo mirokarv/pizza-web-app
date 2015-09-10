@@ -55,6 +55,7 @@ def main(argv=sys.argv):
     config_uri = argv[1]
     options = parse_vars(argv[2:])
     setup_logging(config_uri)
+    #connecting to db
     settings = get_appsettings(config_uri, options=options)
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
@@ -117,18 +118,3 @@ def main(argv=sys.argv):
                     
                 j = j+1
                     
-            '''
-            while j <= i:        
-                topping = random.choice(toppings) #selecting random topping
-                toppings.remove(topping) # lest remove selected topping from the list of toppings
-                top = DBSession.query(Topping).filter(Topping.name == topping).first() #selecting that random topping from the db
-                
-                #linking toppings to pizza names
-                #we have connect to db and add things differently because that model is different
-                conn = engine.connect()
-                conn.execute(Pizza.insert(),[
-                    {'pizza_name_id': pizza.id, 'topping_id': top.id}
-                    ])
-
-                conn.close() #closing the connection to the db
-                j = j+1 '''

@@ -57,9 +57,7 @@ def register(request):
             with transaction.manager:
                 new_user = User(username, password)
                 new_user_profile = Profile(None, None, None, None, None) #creating an empty profile for the user
-                #new_user_credit_card = Credit(None) #creating an empty credit card for the user
-                
-                #new_user_profile.set_credit_card(new_user_credit_card) #linking the credit card to profile
+
                 new_user.set_profile(new_user_profile) #linking the profile to user
                 DBSession.add(new_user) #adding everything to db
                 
