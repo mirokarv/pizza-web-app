@@ -1,6 +1,5 @@
 CHANGES.txt
 MANIFEST.in
-README.txt
 development.ini
 production.ini
 setup.py
@@ -14,7 +13,6 @@ pizza.egg-info/not-zip-safe
 pizza.egg-info/requires.txt
 pizza.egg-info/top_level.txt
 pizza/models/__init__.py
-pizza/models/credit.py
 pizza/models/order.py
 pizza/models/pizza.py
 pizza/models/profile.py
@@ -35,8 +33,10 @@ pizza/static/js/bootstrap.js
 pizza/static/js/bootstrap.min.js
 pizza/static/js/jquery-1.11.2.min.js
 pizza/templates/base.mak
+pizza/templates/cart.mak
 pizza/templates/home.mak
 pizza/templates/login.mak
+pizza/templates/navbar.mak
 pizza/templates/pizza.mak
 pizza/templates/profile.mak
 pizza/templates/register.mak
@@ -45,5 +45,6 @@ pizza/views/home.py
 pizza/views/login.py
 pizza/views/logout.py
 pizza/views/pizza.py
+pizza/views/pizzaCart.py
 pizza/views/profile.py
 pizza/views/register.py

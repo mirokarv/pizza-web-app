@@ -6,35 +6,32 @@ Home-page: UNKNOWN
 Author: UNKNOWN
 Author-email: UNKNOWN
 License: UNKNOWN
-Description: 'pizza' website project README.
-        For user interface programming course.
-        ==================
+Description: #Pizza web app README
         
-        Getting Started
-        ---------------
-        - Python 2.7v used 
+        ##Getting Started
         
-        - Creating a Python environment is highly recommended
+        ###Virtual Environment
+        First you need to install/create a virtual environment: [How to](http://docs.python-guide.org/en/latest/dev/virtualenvs/)
         
-        - Start up the environment
+        Once you've activited it follow the next steps.
         
-        - Using command line write these lines: 
+        ###Install the application
+        - cd ``directory containing this file``
         
-        -- cd <directory containing this file>
+        - python setup.py develop
         
-        -- python setup.py develop
+        - initialize_pizza_db development.ini
         
-        -- initialize_pizza_db development.ini
+        - pserve development.ini --reload
         
-        -- pserve development.ini --reload
+        - more information in: [Pyramid Installation Guide](http://docs.pylonsproject.org/docs/pyramid/en/latest/tutorials/wiki2/installation.html)
         
+        ###URL
+        - http://127.0.0.1:6543/
         
-        Programming guidelines
-        ----------------------
-        
-        - Use 4 spaces for indenting 
-        
-        
+        ### Other
+        - Python 2.7 is needed
+        - Use 4 spaces for indenting
         
         0.0
         ---
