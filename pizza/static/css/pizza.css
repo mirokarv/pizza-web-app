@@ -48,9 +48,11 @@ hr{
 
 .ostoskori_header{
     padding-bottom: 8px;
-    padding-right: 16px;
+    padding-right: 15px;
 }
 
-.hidden{
-    visibility: hidden;
+.lufti_control_fix{
+    padding-left: 15px;
+    padding-bottom: 15px;
 }
+

@@ -6,8 +6,17 @@
         <div class="panel panel-default">
         <div class="panel-body">
             % if orders:
-                <ul class="list-group">
+            <div class="row ostoskori_header">
+            <div class="col-md-9">
                 <h5>Tilauksen kokonaishinta: ${total_price}€</h5>
+            </div>
+            <div class"col-md-3">
+                <button id="ostoskori_toggle" type="button" class="btn btn-primary btn-small pull-right">Näytä/Piilota tilaus</button>
+            </div>
+            </div>
+                <div id="ostoskori_container" class="hidden=false">
+                <ul class="list-group">
+                
                 % for order in orders:
                     <li class="list-group-item">
                     <div class="row">
@@ -39,35 +48,34 @@
                     </li>
                 % endfor
                 </ul>
-
+                </div>
             % endif
             
          </div>
         </div>
-    </div>
         
-        
-    <div class="container page_container">
+        <div class="row">
+        <div class="col-md-6">
         <div class="panel panel-default">
         <div class="panel-body">
         <h4>Tilaus nykyiseen osoitteeseen:</h4>
             % if profile:
                 % if profile.profile.street_address == None:
-                    <td>Osoite tietoja ei ole merkitty profiiliin. Täytä toimitustiedot "Muu osoite kenttään".</td>
+                    <p>Osoite tietoja ei ole merkitty profiiliin. Täytä toimitustiedot "Muu osoite kenttään".</p>
                 % else:
-                    <td>Osoite: ${profile.profile.street_address}</td>
-                    <td>Kaupunki: ${profile.profile.city}</td>
-                    <td>Puhelinnumero: ${profile.profile.phone}</td>
+                    <p>Osoite: ${profile.profile.street_address}</p>
+                    <p>Kaupunki: ${profile.profile.city}</p>
+                    <p>Puhelinnumero: ${profile.profile.phone}</p>
                     
                     <form class="form-horizontal" action="${request.route_url('pay_order', user_id=profile.id)}" method="post">
-                        <div class="controls">
+                        <div class="controls lufti_control_fix">
                             <label class="radio">
                                 <input type="radio" name="payment" id="optionsRadios1" value="card" >Maksu kortilla</label>
                             <label class="radio">
                                 <input type="radio" name="payment" id="optionsRadios2" value="cash" >Maksu käteisellä</label>
                         </div>
 
-                        <div class="control-group pull-left container">
+                        <div class="control-group pull-left">
                             <div class="controls">
                                 <button type="submit" class="btn btn-primary">Vahvista tilaus</button>
                             </div>
@@ -79,14 +87,15 @@
                 % endif
             % endif
             
-         </div>
         </div>
-    </div>   
-    
-    <div class="container page_container">
+        </div>
+        </div>
+    <div class="col-md-6">
+    <div class="panel panel-default">
+        <div class="panel-body">
     <form class="form-horizontal" action="${request.route_url('pay_order', user_id=profile.id)}" method="post">
         
-        <h3>Muu osoite kenttä</h3>
+        <h4>Muu osoite kenttä</h4>
         
         <div class="control-group">
             <label class="control-label" for="street_address">Katuosoite</label>
@@ -116,20 +125,24 @@
             </div>
         </div>
         
-        <div class="controls">
+        <div class="controls lufti_control_fix">
             <label class="radio">
                 <input type="radio" name="custom_payment" id="optionsRadios1" value="card" >Maksu kortilla</label>
             <label class="radio">
                 <input type="radio" name="custom_payment" id="optionsRadios2" value="cash" >Maksu käteisellä</label>
         </div>
 
-        <div class="control-group pull-left container">
+        <div class="control-group pull-left">
             <div class="controls">
                 <button type="submit" class="btn btn-primary">Vahvista tilaus</button>
             </div>
         </div>
 
     </form>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
         
 </html>
