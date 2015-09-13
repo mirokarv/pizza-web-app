@@ -8,33 +8,44 @@
     
     
         % if orders:
-            <ul class="list-group">
+        <div class="row ostoskori_header">
+        <div class="col-md-9">
             <h5>Tilauksen kokonaishinta: ${total_price}€</h5>
-            % for order in orders:
-                <li class="list-group-item">
-                <div class="row">
-                <div class="col-md-8">
-                <h5>${order.pizza.name}  ${order.pizza.price}€</h5>
-                
-                % if order.id in pizza_toppings:
-                    <p>
-                    Lisätäytteet:
+        </div>
+        <div class"col-md-3">
+            <button id="ostoskori_toggle" type="button" class="btn btn-primary btn-small">Näytä/Piilota tilaus</button>
+            <a href="${request.route_url('cart')}" method="post" class="btn btn-info btn-small pull-right"> Siirry ostoskoriin</a>
+        </div>
+        </div>
+            <div id="ostoskori_container" class="hidden">
+                <ul class="list-group">
+                % for order in orders:
+                    <li class="list-group-item">
+                    <div class="row">
+                    <div class="col-md-8">
+                    <h5>${order.pizza.name}  ${order.pizza.price}€</h5>
                     
-                    % for topping in pizza_toppings[order.id]:
-                        ${topping[0]} ${topping[1]}€
+                    % if order.id in pizza_toppings:
+                        <p>
+                        Lisätäytteet:
+                        
+                        % for topping in pizza_toppings[order.id]:
+                            ${topping[0]} ${topping[1]}€
 
-                    % endfor
-                    </p>
-                %endif
-                </div>
-                <div class="col-md-4">
-                <a href="${request.route_url('delete_order', order_id=order.id)}" method="post" class="btn btn-info btn-small pull-right"> Poista pitsa</a>
-                </div>
-                </div>
-                </li>
-            % endfor
-            </ul>
-        <a href="${request.route_url('cart')}" method="post" class="pull-right btn btn-info btn-small"> Siirry ostoskoriin</a>
+                        % endfor
+                        </p>
+                    %endif
+                    </div>
+                    <div class="col-md-4">
+                    <a href="${request.route_url('delete_order', order_id=order.id)}" method="post" class="btn btn-info btn-small pull-right"> Poista pitsa</a>
+                    </div>
+                    </div>
+                    </li>
+                % endfor
+                </ul>
+            </div>
+        
+        
             
         % else:
             <h6>Ostoskori on tyhjä blaablaa...</h6>

@@ -45,3 +45,12 @@ hr{
 .page_container{
     min-height: 90%;
 }
+
+.ostoskori_header{
+    padding-bottom: 8px;
+    padding-right: 16px;
+}
+
+.hidden{
+    visibility: hidden;
+}
