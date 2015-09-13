@@ -3,7 +3,7 @@
 <html>
     
     <div class="container page_container">
-        <div class="panel panel-default">
+        <div class="panel panel-success">
         <div class="panel-body">
             % if orders:
             <div class="row ostoskori_header">
@@ -56,7 +56,7 @@
         
         <div class="row">
         <div class="col-md-6">
-        <div class="panel panel-default">
+        <div class="panel panel-success">
         <div class="panel-body">
         <h4>Tilaus nykyiseen osoitteeseen:</h4>
             % if profile:
@@ -91,7 +91,7 @@
         </div>
         </div>
     <div class="col-md-6">
-    <div class="panel panel-default">
+    <div class="panel panel-success">
         <div class="panel-body">
     <form class="form-horizontal" action="${request.route_url('pay_order', user_id=profile.id)}" method="post">
         

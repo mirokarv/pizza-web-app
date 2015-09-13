@@ -1,9 +1,8 @@
 <%inherit file="navbar.mak"/>
 <div class="container page_container">
-<h2>asd</h2>
     <div class="row">
         <div class="col-md-6">
-            <div class="panel panel-default">
+            <div class="panel panel-success">
                 <div class="panel-heading">
                 <h3 class="panel-title">Aukioloajat</h3>
                 </div>
@@ -19,7 +18,7 @@
             </div>
         </div>
         <div class="col-md-6">
-        <div class="panel panel-default">
+        <div class="panel panel-success">
                 <div class="panel-heading">
                 <h3 class="panel-title">Yhteystiedot</h3>
                 </div>

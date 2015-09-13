@@ -1,7 +1,7 @@
 <%inherit file="base.mak"/> <!--Ingerit's base.mak and therefore all css files-->
 
 <%block name="toolbar">
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-custom">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -12,8 +12,8 @@
                 <span class="icon-bar"></span>
             </button>
             
-            <a class="navbar-brand" href="${request.route_url('home')}">Pizzaaaa...</a>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <a class="navbar-brand" href="${request.route_url('home')}">Ysäripizzä</a>
+                <div class="collapse navbar-collapse">
                       <ul class="nav navbar-nav">
                         <li class="${'active' if request.matched_route.name in ['home'] else ''}">
                             <a href="${request.route_url('home')}">Koti</a>
@@ -23,14 +23,14 @@
                         </li>
 
                     </ul>
-                    <ul class="nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right">
                         %if request.user:
                             <li class="${'active' if request.matched_route.name in ['profile'] else ''}">
                                 <a href="${request.route_url('profile', user_id =request.user.id)}">Oma profiili</a>
                             </li>
                         % endif
                     </ul>
-                    <ul class="nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right">
                         %if request.user:
                             <li class="">
                                 <a href="${request.route_url('logout')}">Kirjaudu ulos</a>

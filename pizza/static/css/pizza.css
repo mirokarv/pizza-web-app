@@ -8,7 +8,7 @@ body {
 }
 
 .container{
-    background-color: #ffffcc;
+    background-color: #ffffe6;
 }
 
 footer {
@@ -54,5 +54,70 @@ hr{
 .lufti_control_fix{
     padding-left: 15px;
     padding-bottom: 15px;
+}
+
+/*
+Reconficuration of the default bootstrap navbar because it's ugly. Link to the tool and settings that were used:
+http://work.smarchal.com/twbscolor/css/dff0d8d6e9c63c763d3c763d0
+*/
+
+.navbar-default {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+.navbar-default .navbar-brand {
+  color: #3c763d;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #3c763d;
+}
+.navbar-default .navbar-text {
+  color: #3c763d;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #3c763d;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: #3c763d;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: #3c763d;
+  background-color: #d6e9c6;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  color: #3c763d;
+  background-color: #d6e9c6;
+}
+.navbar-default .navbar-toggle {
+  border-color: #d6e9c6;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #d6e9c6;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #3c763d;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #3c763d;
+}
+.navbar-default .navbar-link {
+  color: #3c763d;
+}
+.navbar-default .navbar-link:hover {
+  color: #3c763d;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #3c763d;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #3c763d;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #3c763d;
+    background-color: #d6e9c6;
+  }
 }
 

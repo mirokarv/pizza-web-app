@@ -5,7 +5,7 @@
 <div class="col-md-3">
  
 
-<div class="panel panel-default">
+<div class="panel panel-success">
 <div class="panel-body">
 
 <form class="form-horizontal" action="${request.route_url('edit_profile', user_id=user.id)}" method="post">
