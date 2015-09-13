@@ -1,12 +1,20 @@
 <%inherit file="navbar.mak"/>
 <div class="container page_container">
+
+<div class="row">
+<div class="col-md-3">
+ 
+
+<div class="panel panel-default">
+<div class="panel-body">
+
 <form class="form-horizontal" action="${request.route_url('edit_profile', user_id=user.id)}" method="post">
     
     
     <div class="control-group">
-        <label class="control-label" for="email">Sähköposti osoite</label>
+        <label class="control-label" for="email">Sähköpostiosoite</label>
         <div class="controls">
-            <input type="text" name="email" placeholder="Sähköposti osoite" value="${profile.email}">
+            <input type="text" name="email" placeholder="Sähköpostiosoite" value="${profile.email}">
         </div>
     </div>
     
@@ -18,9 +26,9 @@
     </div>
     
     <div class="control-group">
-        <label class="control-label" for="street_address">Koti kaupunki</label>
+        <label class="control-label" for="street_address">Kotikaupunki</label>
         <div class="controls">
-            <input type="text" name="city" placeholder="Koti kaupunki" value="${profile.city}">
+            <input type="text" name="city" placeholder="Kotikaupunki" value="${profile.city}">
         </div>
     </div>
     
@@ -53,10 +61,14 @@
 
 </form>
 </div>
+</div>
+</div>
+</div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="passwordChange" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -84,7 +96,7 @@
                 <input type="password" name="repeatPassword" placeholder="Toista uusi salasana">
             </div>
         </div>
-        
+        <br>
         <div class="modal-footer">
             <input type="hidden" name="user_id" value="${user.id}">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Sulje</button>
