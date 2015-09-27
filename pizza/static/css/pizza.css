@@ -56,6 +56,14 @@ hr{
     padding-bottom: 15px;
 }
 
+.login_container{
+    padding: 5px;
+}
+
+.login_field{
+    width: 100%;
+}
+
 /*
 Reconficuration of the default bootstrap navbar colors because it's ugly. Link to the tool and settings that were used:
 http://work.smarchal.com/twbscolor/css/dff0d8d6e9c63c763d3c763d0
