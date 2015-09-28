@@ -2,7 +2,7 @@
 <div class="container page_container">
 
 <div class="row">
-<div class="col-md-3">
+<div class="col-md-3 profile_widht_adjustor">
  
 
 <div class="panel panel-success">
@@ -11,38 +11,38 @@
 <form class="form-horizontal" action="${request.route_url('edit_profile', user_id=user.id)}" method="post">
     
     
-    <div class="control-group">
+    <div class="control-group ">
         <label class="control-label" for="email">Sähköpostiosoite</label>
         <div class="controls">
-            <input type="text" name="email" placeholder="Sähköpostiosoite" value="${profile.email}">
+            <input type="text" name="email" placeholder="Sähköpostiosoite" class="login_field" value="${profile.email}">
         </div>
     </div>
     
     <div class="control-group">
         <label class="control-label" for="street_address">Katuosoite</label>
         <div class="controls">
-            <input type="text" name="street_address" placeholder="Katuosoite" value="${profile.street_address}">
+            <input type="text" name="street_address" placeholder="Katuosoite" class="login_field" value="${profile.street_address}">
         </div>
     </div>
     
     <div class="control-group">
         <label class="control-label" for="street_address">Kotikaupunki</label>
         <div class="controls">
-            <input type="text" name="city" placeholder="Kotikaupunki" value="${profile.city}">
+            <input type="text" name="city" placeholder="Kotikaupunki" class="login_field" value="${profile.city}">
         </div>
     </div>
     
     <div class="control-group">
         <label class="control-label" for="street_address">Postinumero</label>
         <div class="controls">
-            <input type="text" name="postal_code" placeholder="Posti numero" value="${profile.postal_code}">
+            <input type="text" name="postal_code" placeholder="Posti numero" class="login_field" value="${profile.postal_code}">
         </div>
     </div>
     
     <div class="control-group">
         <label class="control-label" for="street_address">Puhelinnumero</label>
         <div class="controls">
-            <input type="text" name="phone" placeholder="Puhelin numero" value="${profile.phone}">
+            <input type="text" name="phone" placeholder="Puhelin numero" class="login_field" value="${profile.phone}">
         </div>
     </div>
 
@@ -63,6 +63,12 @@
 </div>
 </div>
 </div>
+<div class="col-md-3">
+</div>
+<div class="col-md-3">
+</div>
+<div class="col-md-3">
+</div>
 </div>
 </div>
 
@@ -81,19 +87,19 @@
         <div class="control-group">
             <label class="control-label" for="oldPassword">Vanha salasana</label>
             <div class="controls">
-                <input type="password" name="oldPassword" placeholder="Vanha salasana">
+                <input type="password" name="oldPassword" class="login_field" placeholder="Vanha salasana">
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="newPassword">Uusi salasana</label>
             <div class="controls">
-                <input type="password" name="newPassword" placeholder="Uusi salasana">
+                <input type="password" name="newPassword" class="login_field" placeholder="Uusi salasana">
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="repeatPassword">Toista uusi salasana</label>
             <div class="controls">
-                <input type="password" name="repeatPassword" placeholder="Toista uusi salasana">
+                <input type="password" name="repeatPassword" class="login_field" placeholder="Toista uusi salasana">
             </div>
         </div>
         <br>

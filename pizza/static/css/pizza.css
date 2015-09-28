@@ -64,6 +64,15 @@ hr{
     width: 100%;
 }
 
+.profile_widht_adjustor{
+    max-width: 50%;
+    min-width: 235px;
+}
+
+.button_padder{
+    padding: 1%;
+}
+
 /*
 Reconficuration of the default bootstrap navbar colors because it's ugly. Link to the tool and settings that were used:
 http://work.smarchal.com/twbscolor/css/dff0d8d6e9c63c763d3c763d0

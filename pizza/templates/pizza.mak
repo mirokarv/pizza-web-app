@@ -9,12 +9,12 @@
     
         % if orders:
         <div class="row ostoskori_header">
-        <div class="col-md-9">
+        <div class="col-md-8">
             <h5>Tilauksen kokonaishinta: ${total_price}€</h5>
         </div>
-        <div class"col-md-3">
+        <div class"col-md-4">
             <button id="ostoskori_toggle" type="button" class="btn btn-primary btn-small">Näytä/Piilota tilaus</button>
-            <a href="${request.route_url('cart')}" method="post" class="btn btn-info btn-small pull-right"> Siirry ostoskoriin</a>
+            <a href="${request.route_url('cart')}" method="post" class="btn btn-info btn-small"> Siirry ostoskoriin</a>
         </div>
         </div>
             <div id="ostoskori_container" class="hidden">
