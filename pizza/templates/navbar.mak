@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pizza-navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -13,7 +13,7 @@
             </button>
             
             <a class="navbar-brand" href="${request.route_url('home')}">Ysäripizzä</a>
-                <div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse" id="pizza-navbar-collapse">
                       <ul class="nav navbar-nav">
                         <li class="${'active' if request.matched_route.name in ['home'] else ''}">
                             <a href="${request.route_url('home')}">Koti</a>
