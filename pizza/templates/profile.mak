@@ -72,7 +72,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Salasanan vaihto</h4>
       </div>
   
   
@@ -99,8 +99,8 @@
         <br>
         <div class="modal-footer">
             <input type="hidden" name="user_id" value="${user.id}">
+			<button type="submit" class="btn btn-primary">Tallenna muutokset</button>
             <button class="btn" data-dismiss="modal" aria-hidden="true">Sulje</button>
-            <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
         </div>
 
     </form>
